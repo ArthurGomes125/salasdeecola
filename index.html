@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salas da Escola</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <section id="tela-login" class="hidden max-w-sm mx-auto mt-24 p-6">
+    <form id="form-login" class="space-y-4 rounded-lg bg-white p-6 shadow">
+      <h1 class="text-center text-2xl font-bold">Acesso restrito</h1>
+      <p class="text-center text-gray-600">Somente professores e secretaria</p>
+      <label class="block text-sm font-medium" for="email">E-mail institucional</label>
+      <input id="email" type="email" autocomplete="username" required placeholder="nome@professor.escola.com" class="w-full rounded border p-2">
+      <label class="block text-sm font-medium" for="senha">Senha</label>
+      <input id="senha" type="password" autocomplete="current-password" required minlength="5" placeholder="Sua senha" class="w-full rounded border p-2">
+      <p id="erro" role="alert" class="text-sm text-red-600"></p>
+      <button class="w-full rounded bg-blue-700 p-2 font-semibold text-white">Entrar</button>
+      <button id="btn-voltar" type="button" class="w-full text-sm text-gray-600 underline">Voltar para as salas</button>
+    </form>
+  </section>
+  <div id="painel">
+    <header class="bg-blue-800 p-6 text-center text-white">
+      <h1 class="text-3xl font-bold">Salas da Escola</h1>
+      <p class="mt-1">Consulte a disponibilidade das salas</p>
+      <p id="usuario-logado" class="mt-3 hidden text-sm"></p>
+      <div class="mt-4 flex justify-center gap-5">
+        <button data-pagina="salas" aria-current="page" class="underline">Salas</button>
+        <button data-pagina="equipe" aria-current="false" class="underline">Equipe</button>
+      </div>
+      <button id="btn-entrar" class="mt-3 text-sm underline">Acesso para professores e secretaria</button>
+      <button id="btn-sair" class="mt-3 hidden text-sm underline">Sair</button>
+    </header>
+    <main class="mx-auto max-w-5xl p-6">
+      <section id="pagina-salas">
+        <div class="mb-6 rounded-lg bg-white p-5 shadow">
+          <h2 class="text-xl font-bold">Status das salas</h2>
+          <p class="mt-1 text-gray-600">Veja quais salas estão disponíveis ou ocupadas.</p>
+        </div>
+        <section id="gerenciar-salas" class="mb-6 hidden rounded-lg bg-white p-5 shadow">
+          <h2 class="mb-3 text-xl font-bold">Gerenciar salas</h2>
+          <form id="form-sala" class="flex flex-col gap-3 sm:flex-row">
+            <label class="sr-only" for="nome-sala">Nome da nova sala</label>
+            <input id="nome-sala" required minlength="2" maxlength="60" class="min-w-0 flex-1 rounded border p-2" placeholder="Nome da nova sala">
+            <button class="rounded bg-blue-700 px-4 py-2 font-semibold text-white">Adicionar sala</button>
+          </form>
+          <p class="mt-2 text-sm text-gray-500">Edite ou exclua salas pelos botões em cada cartão.</p>
+        </section>
+        <div id="salas" class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </section>
+      <section id="pagina-equipe" class="hidden">
+        <div class="mb-6 rounded-lg bg-white p-6 shadow">
+          <p class="text-sm font-semibold uppercase tracking-wider text-blue-700">Equipe do projeto</p>
+          <h2 class="mt-1 text-3xl font-bold">Integrantes</h2>
+          <p class="mt-2 text-gray-600">Conheça as pessoas que desenvolveram o projeto.</p>
+        </div>
+        <div id="integrantes" class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <article tabindex="0" class="cursor-pointer rounded-lg bg-white p-6 shadow"><div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-800">AG</div><h3 class="text-xl font-bold">Arthur Gomes</h3></article>
+          <article tabindex="0" class="cursor-pointer rounded-lg bg-white p-6 shadow"><div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-800">JK</div><h3 class="text-xl font-bold">Jose Kaio</h3></article>
+          <article tabindex="0" class="cursor-pointer rounded-lg bg-white p-6 shadow"><div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-800">IF</div><h3 class="text-xl font-bold">Isabelly Fernandes</h3></article>
+          <article tabindex="0" class="cursor-pointer rounded-lg bg-white p-6 shadow"><div class="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 text-lg font-bold text-blue-800">JG</div><h3 class="text-xl font-bold">Joao Gabriel</h3></article>
+        </div>
+        <p id="nome-secreto" aria-live="polite" class="mt-6 hidden rounded-lg bg-blue-800 p-5 text-center text-2xl font-bold text-white">Augusto Xavier</p>
+      </section>
+    </main>
+    <footer class="p-6 text-center text-gray-500">Sistema de consulta das salas</footer>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
